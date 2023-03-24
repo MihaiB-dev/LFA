@@ -73,8 +73,8 @@ if ok == False:
 ```
 
 ### Examples
-Test for DFA : [Input DFA](/dfa.txt)  
-Test for NFA : [Input NFA](/nfa1.txt)
+Test for DFA : [Input DFA](https://github.com/MihaiB-dev/LFA/blob/main/project1/dfa.txt)  
+Test for NFA : [Input NFA](https://github.com/MihaiB-dev/LFA/blob/main/project1/nfa1.txt)
 
 ```txt
 #input DFA:
