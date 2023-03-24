@@ -1,4 +1,4 @@
-# Create a program that compiles a DFA and NFA and verifies a word.
+# Program which creates a DFA or NFA + verifies a word.
 
 ### Syntax for writing the input
   line 1: reads the alphabet separated by " ".  
