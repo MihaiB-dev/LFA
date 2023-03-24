@@ -4,7 +4,7 @@ import sys
 # pe randurile urmatoare se citesc drumurile
 #pe ultimul rand se citesc starile finale
 
-with open("dfa.txt","r") as file:
+with open("nfa1.txt","r") as file:
     #citim alfabetul si starile
     alfabet = file.readline().split() # se citeste aflabetul
     stari = file.readline().split() # se citesc starile
@@ -26,18 +26,19 @@ with open("dfa.txt","r") as file:
             else:
                 stare_finala = linie
 
-print(AUTO)
+#print(AUTO)
 drum = [] # se reface drumul treptat
-stare_curenta = [stari[0]][0] #initializam cu prima stare
+stare_curenta = [[stari[0]][0]] #initializam cu prima stare
 drum.append(stare_curenta)
 
 if cuvant is None: #check if the first node is the final one
-    if stare_curenta in stare_finala:
-        print(f"Input: lambda acceptat, {' '.join(drum)}")
-        sys.exit()
-    else:
-        print("Input : lambda nu este acceptat")
-        sys.exit()
+    for stare in stare_curenta:
+        print(stare,stare_finala)
+        if stare in stare_finala:
+            print(f"Input: lambda acceptat, {', '.join([' '.join(el) for el in drum])}")
+            sys.exit()
+    print("Input : lambda nu este acceptat")
+    sys.exit()
 
 cuvant = list(cuvant) #imparte cuvantul intr-o lista de litere
 
@@ -45,18 +46,27 @@ cuvant = list(cuvant) #imparte cuvantul intr-o lista de litere
 
 ok = False
 for poz in range(0, len(cuvant)):
+    mult_stari = [] #multimea starilor daca sunt mai multe (NFA)
 
-    if  AUTO[stare_curenta][cuvant[poz]] != []:
-        for stare in AUTO[stare_curenta][cuvant[poz]]:
-            stare_curenta = AUTO[stare_curenta][cuvant[poz]][0]
-            drum.append(stare_curenta)
+    verify = False #se verifica daca are un drum posibil
+    for stare in stare_curenta:
+        if  AUTO[stare][cuvant[poz]] != []:
+            verify = True
+            mult_stari.extend(AUTO[stare][cuvant[poz]])
 
-        if stare_curenta in stare_finala and poz == len(cuvant) - 1:
-            print(f"Input: {''.join(cuvant)} acceptat, {' '.join(drum)}")
-            ok = True
-            break
-    else:
+    if verify == False:
         break
+    
+    for el in mult_stari:
+        if poz != len(cuvant) - 1:
+            break
+        elif el in stare_finala:
+            print(f"Input: {''.join(cuvant)} acceptat , drum : {', '.join([' '.join(el) for el in drum])}, {' '.join(mult_stari)}")
+            sys.exit()
+
+    drum.append(mult_stari)
+    stare_curenta = mult_stari
+
 
 if ok == False:
     print(f"Input: {''.join(cuvant)} neacceptat")
