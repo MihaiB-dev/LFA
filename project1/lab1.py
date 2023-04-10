@@ -29,11 +29,10 @@ with open("nfa1.txt","r") as file:
 #print(AUTO)
 drum = [] # se reface drumul treptat
 stare_curenta = [[stari[0]][0]] #initializam cu prima stare
-drum.append(stare_curenta)
+#drum.append(stare_curenta)
 
 if cuvant is None: #check if the first node is the final one
     for stare in stare_curenta:
-        print(stare,stare_finala)
         if stare in stare_finala:
             print(f"Input: lambda acceptat, {', '.join([' '.join(el) for el in drum])}")
             sys.exit()
@@ -47,7 +46,6 @@ cuvant = list(cuvant) #imparte cuvantul intr-o lista de litere
 ok = False
 for poz in range(0, len(cuvant)):
     mult_stari = [] #array with states (NFA)
-
     verify = False  #verify if the road is possible
     for stare in stare_curenta:#goes with each state (for NFA)
         if  AUTO[stare][cuvant[poz]] != []:#verify if it is a transition
