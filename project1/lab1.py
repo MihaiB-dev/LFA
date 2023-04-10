@@ -29,11 +29,10 @@ with open("nfa1.txt","r") as file:
 #print(AUTO)
 drum = [] # se reface drumul treptat
 stare_curenta = [[stari[0]][0]] #initializam cu prima stare
-drum.append(stare_curenta)
+#drum.append(stare_curenta)
 
 if cuvant is None: #check if the first node is the final one
     for stare in stare_curenta:
-        print(stare,stare_finala)
         if stare in stare_finala:
             print(f"Input: lambda acceptat, {', '.join([' '.join(el) for el in drum])}")
             sys.exit()
@@ -46,23 +45,21 @@ cuvant = list(cuvant) #imparte cuvantul intr-o lista de litere
 
 ok = False
 for poz in range(0, len(cuvant)):
-    mult_stari = [] #multimea starilor daca sunt mai multe (NFA)
-
-    verify = False #se verifica daca are un drum posibil
-    for stare in stare_curenta:
-        if  AUTO[stare][cuvant[poz]] != []:
+    mult_stari = [] #array with states (NFA)
+    verify = False  #verify if the road is possible
+    for stare in stare_curenta:#goes with each state (for NFA)
+        if  AUTO[stare][cuvant[poz]] != []:#verify if it is a transition
             verify = True
-            mult_stari.extend(AUTO[stare][cuvant[poz]])
+            mult_stari.extend(AUTO[stare][cuvant[poz]])#add all the transitions (NFA)
 
-    if verify == False:
+    if verify == False: #if there are no transitions, then it will get out from the main for and print not accepted
         break
     
-    for el in mult_stari:
-        if poz != len(cuvant) - 1:
-            break
-        elif el in stare_finala:
-            print(f"Input: {''.join(cuvant)} acceptat , drum : {', '.join([' '.join(el) for el in drum])}, {' '.join(mult_stari)}")
-            sys.exit()
+    if poz == len(cuvant) - 1:#if the word is finished then it will verify if one of the current states is final
+        for el in mult_stari:
+            if el in stare_finala:
+                print(f"Input: {''.join(cuvant)} acceptat , drum : {', '.join([' '.join(el) for el in drum])}, {' '.join(mult_stari)}")
+                sys.exit()
 
     drum.append(mult_stari)
     stare_curenta = mult_stari
