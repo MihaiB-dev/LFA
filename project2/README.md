@@ -59,7 +59,9 @@ There are x steps to convert a λ-NFA to DFA :
                 temp = union_lists(temp,closures[local_state]) 
             l_NFA[state][letter] = temp
     ```
-</details>![table](images/lambda-nfa.png)
+</details>
+
+![table](images/lambda-nfa.png)
 
 
 3. **Create DFA**   
