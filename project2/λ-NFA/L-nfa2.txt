@@ -1,0 +1,15 @@
+L a b
+q0 q1 q2 q3 q4
+q0 b q1
+q0 L q3
+q1 b q2
+q2 a q1
+q3 L q1
+q3 b q0
+q3 a q3
+q3 L q2
+q3 a q4
+q4 b q3
+q4 b q4
+q4 L q2
+q0
