@@ -38,10 +38,7 @@ There are x steps to convert a λ-NFA to DFA :
 </details>
 
 
-2. **Create a λ-table**   
-
-![table](images/lambda-nfa.png)<details>
-    <summary>Code for creating the λ-table</summary>
+2. **Create a λ-table**  <details><summary>Code for creating the λ-table</summary>
 
     ```python
     #tabel l-nfa
@@ -62,8 +59,8 @@ There are x steps to convert a λ-NFA to DFA :
                 temp = union_lists(temp,closures[local_state]) 
             l_NFA[state][letter] = temp
     ```
-
 </details>
+![table](images/lambda-nfa.png)<details>
 
 
 3. **Create DFA**   
