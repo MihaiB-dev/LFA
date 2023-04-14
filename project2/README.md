@@ -60,7 +60,7 @@ There are x steps to convert a λ-NFA to DFA :
             l_NFA[state][letter] = temp
     ```
 </details>
-![table](images/lambda-nfa.png)<details>
+![table](images/lambda-nfa.png)
 
 
 3. **Create DFA**   
