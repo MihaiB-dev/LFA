@@ -38,7 +38,8 @@ There are x steps to convert a λ-NFA to DFA :
 </details>
 
 
-2. **Create a λ-table**  ![table](images/lambda-nfa.png)<details><summary>Code for creating the λ-table</summary>
+2. **Create a λ-table**   
+![table](images/lambda-nfa.png)<details><summary>Code for creating the λ-table</summary>
 
     ```python
     #tabel l-nfa
